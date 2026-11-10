@@ -38,6 +38,7 @@ import { Route as Char123LocaleChar125DashboardRouteImport } from './routes/{-$l
 import { Route as Char123LocaleChar125ExtrasRouteImport } from './routes/{-$locale}/extras'
 import { Route as Char123LocaleChar125FeaturedRouteImport } from './routes/{-$locale}/featured'
 import { Route as Char123LocaleChar125FilmRouteImport } from './routes/{-$locale}/film'
+import { Route as Char123LocaleChar125ForkInfoRouteImport } from './routes/{-$locale}/fork-info'
 import { Route as Char123LocaleChar125ListingsRouteImport } from './routes/{-$locale}/listings'
 import { Route as Char123LocaleChar125MotionvideoMcpRouteImport } from './routes/{-$locale}/motionvideo-mcp'
 import { Route as Char123LocaleChar125MotionvideoSkillRouteImport } from './routes/{-$locale}/motionvideo-skill'
@@ -285,6 +286,12 @@ const Char123LocaleChar125FilmRoute =
   Char123LocaleChar125FilmRouteImport.update({
     id: '/film',
     path: '/film',
+    getParentRoute: () => Char123LocaleChar125RouteRoute,
+  } as any)
+const Char123LocaleChar125ForkInfoRoute =
+  Char123LocaleChar125ForkInfoRouteImport.update({
+    id: '/fork-info',
+    path: '/fork-info',
     getParentRoute: () => Char123LocaleChar125RouteRoute,
   } as any)
 const Char123LocaleChar125ListingsRoute =
@@ -852,6 +859,7 @@ export interface FileRoutesByFullPath {
   '/{-$locale}/extras': typeof Char123LocaleChar125ExtrasRouteWithChildren
   '/{-$locale}/featured': typeof Char123LocaleChar125FeaturedRoute
   '/{-$locale}/film': typeof Char123LocaleChar125FilmRoute
+  '/{-$locale}/fork-info': typeof Char123LocaleChar125ForkInfoRoute
   '/{-$locale}/listings': typeof Char123LocaleChar125ListingsRoute
   '/{-$locale}/motionvideo-mcp': typeof Char123LocaleChar125MotionvideoMcpRoute
   '/{-$locale}/motionvideo-skill': typeof Char123LocaleChar125MotionvideoSkillRoute
@@ -967,6 +975,7 @@ export interface FileRoutesByTo {
   '/{-$locale}/consent': typeof Char123LocaleChar125ConsentRoute
   '/{-$locale}/featured': typeof Char123LocaleChar125FeaturedRoute
   '/{-$locale}/film': typeof Char123LocaleChar125FilmRoute
+  '/{-$locale}/fork-info': typeof Char123LocaleChar125ForkInfoRoute
   '/{-$locale}/listings': typeof Char123LocaleChar125ListingsRoute
   '/{-$locale}/motionvideo-mcp': typeof Char123LocaleChar125MotionvideoMcpRoute
   '/{-$locale}/motionvideo-skill': typeof Char123LocaleChar125MotionvideoSkillRoute
@@ -1079,6 +1088,7 @@ export interface FileRoutesById {
   '/{-$locale}/extras': typeof Char123LocaleChar125ExtrasRouteWithChildren
   '/{-$locale}/featured': typeof Char123LocaleChar125FeaturedRoute
   '/{-$locale}/film': typeof Char123LocaleChar125FilmRoute
+  '/{-$locale}/fork-info': typeof Char123LocaleChar125ForkInfoRoute
   '/{-$locale}/listings': typeof Char123LocaleChar125ListingsRoute
   '/{-$locale}/motionvideo-mcp': typeof Char123LocaleChar125MotionvideoMcpRoute
   '/{-$locale}/motionvideo-skill': typeof Char123LocaleChar125MotionvideoSkillRoute
@@ -1201,6 +1211,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/extras'
     | '/{-$locale}/featured'
     | '/{-$locale}/film'
+    | '/{-$locale}/fork-info'
     | '/{-$locale}/listings'
     | '/{-$locale}/motionvideo-mcp'
     | '/{-$locale}/motionvideo-skill'
@@ -1316,6 +1327,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/consent'
     | '/{-$locale}/featured'
     | '/{-$locale}/film'
+    | '/{-$locale}/fork-info'
     | '/{-$locale}/listings'
     | '/{-$locale}/motionvideo-mcp'
     | '/{-$locale}/motionvideo-skill'
@@ -1427,6 +1439,7 @@ export interface FileRouteTypes {
     | '/{-$locale}/extras'
     | '/{-$locale}/featured'
     | '/{-$locale}/film'
+    | '/{-$locale}/fork-info'
     | '/{-$locale}/listings'
     | '/{-$locale}/motionvideo-mcp'
     | '/{-$locale}/motionvideo-skill'
@@ -1751,6 +1764,13 @@ declare module '@tanstack/react-router' {
       path: '/film'
       fullPath: '/{-$locale}/film'
       preLoaderRoute: typeof Char123LocaleChar125FilmRouteImport
+      parentRoute: typeof Char123LocaleChar125RouteRoute
+    }
+    '/{-$locale}/fork-info': {
+      id: '/{-$locale}/fork-info'
+      path: '/fork-info'
+      fullPath: '/{-$locale}/fork-info'
+      preLoaderRoute: typeof Char123LocaleChar125ForkInfoRouteImport
       parentRoute: typeof Char123LocaleChar125RouteRoute
     }
     '/{-$locale}/listings': {
@@ -2773,6 +2793,7 @@ interface Char123LocaleChar125RouteRouteChildren {
   Char123LocaleChar125ExtrasRoute: typeof Char123LocaleChar125ExtrasRouteWithChildren
   Char123LocaleChar125FeaturedRoute: typeof Char123LocaleChar125FeaturedRoute
   Char123LocaleChar125FilmRoute: typeof Char123LocaleChar125FilmRoute
+  Char123LocaleChar125ForkInfoRoute: typeof Char123LocaleChar125ForkInfoRoute
   Char123LocaleChar125ListingsRoute: typeof Char123LocaleChar125ListingsRoute
   Char123LocaleChar125MotionvideoMcpRoute: typeof Char123LocaleChar125MotionvideoMcpRoute
   Char123LocaleChar125MotionvideoSkillRoute: typeof Char123LocaleChar125MotionvideoSkillRoute
@@ -2820,6 +2841,7 @@ const Char123LocaleChar125RouteRouteChildren: Char123LocaleChar125RouteRouteChil
       Char123LocaleChar125ExtrasRouteWithChildren,
     Char123LocaleChar125FeaturedRoute: Char123LocaleChar125FeaturedRoute,
     Char123LocaleChar125FilmRoute: Char123LocaleChar125FilmRoute,
+    Char123LocaleChar125ForkInfoRoute: Char123LocaleChar125ForkInfoRoute,
     Char123LocaleChar125ListingsRoute: Char123LocaleChar125ListingsRoute,
     Char123LocaleChar125MotionvideoMcpRoute:
       Char123LocaleChar125MotionvideoMcpRoute,

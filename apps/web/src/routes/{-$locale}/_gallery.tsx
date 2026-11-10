@@ -53,6 +53,7 @@ import {
 } from "@/components/ui/popover";
 import type { MasonryItem } from "@/components/virtual-masonry";
 import { xProfileUrl } from "@/constants/links";
+import { PERSONAL_FORK } from "@/constants/personal-fork";
 import { ROUTES } from "@/constants/routes";
 import catalog from "@/data/motion-catalog.json";
 import { useLaneCount } from "@/hooks/use-lane-count";
@@ -605,11 +606,13 @@ const Gallery = () => {
   }));
   const items: MasonryItem[] = [{ key: "intro", node: intro }, ...cards];
   const sponsoredIndex = sponsoredTileIndex(lanes, cards.length);
-  items.splice(sponsoredIndex, 0, {
-    key: "sponsored",
-    aspectRatio: 16 / 9,
-    node: <SponsoredCard placement="feed" />,
-  });
+  if (!PERSONAL_FORK) {
+    items.splice(sponsoredIndex, 0, {
+      key: "sponsored",
+      aspectRatio: 16 / 9,
+      node: <SponsoredCard placement="feed" />,
+    });
+  }
   // Open roles right after the sponsored card: in the same lane on desktop,
   // next in the single column on phones. Only when there are open roles; the
   // header's Jobs link covers the rest.

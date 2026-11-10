@@ -5,6 +5,7 @@ import { drizzle } from "drizzle-orm/d1";
 import { z } from "zod";
 
 import { JOB_LISTING_DAYS } from "@/constants/jobs";
+import { PERSONAL_FORK } from "@/constants/personal-fork";
 import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { jobPostSchema } from "@/lib/jobs";
@@ -44,16 +45,21 @@ export type JobListing = {
 /** Approved, unexpired listings: featured first, then newest. */
 export const getJobs = createServerFn({ method: "GET" }).handler(
   (): Promise<JobListing[]> =>
-    drizzle(env.DB)
-      .select(listingColumns)
-      .from(jobPosts)
-      .where(
-        and(eq(jobPosts.status, "approved"), gt(jobPosts.expiresAt, new Date()))
-      )
-      .orderBy(
-        sql`case when ${jobPosts.plan} = 'featured' then 0 else 1 end`,
-        desc(jobPosts.publishedAt)
-      )
+    PERSONAL_FORK
+      ? Promise.resolve([])
+      : drizzle(env.DB)
+          .select(listingColumns)
+          .from(jobPosts)
+          .where(
+            and(
+              eq(jobPosts.status, "approved"),
+              gt(jobPosts.expiresAt, new Date())
+            )
+          )
+          .orderBy(
+            sql`case when ${jobPosts.plan} = 'featured' then 0 else 1 end`,
+            desc(jobPosts.publishedAt)
+          )
 );
 
 const ownerColumns = {

@@ -4,6 +4,7 @@ import { env } from "cloudflare:workers";
 import { z } from "zod";
 
 import { DEFAULT_LOCALE, isLocale, localizedPath } from "@/constants/locales";
+import { PERSONAL_FORK } from "@/constants/personal-fork";
 import {
   BUSINESS_SEATS,
   PLAN_BILLINGS,
@@ -87,6 +88,9 @@ export const getMyPlan = createServerFn({ method: "GET" })
  */
 export const getParityOffer = createServerFn({ method: "GET" }).handler(
   async (): Promise<ParityOffer | null> => {
+    if (PERSONAL_FORK) {
+      return null;
+    }
     const country = visitorCountry(getRequest());
     if (!country) {
       return null;
@@ -108,6 +112,9 @@ export const getParityOffer = createServerFn({ method: "GET" }).handler(
  */
 export const getSaleOffer = createServerFn({ method: "GET" }).handler(
   async (): Promise<SaleOffer | null> => {
+    if (PERSONAL_FORK) {
+      return null;
+    }
     const offer = await offerForVisitor(getRequest());
     if (!offer) {
       return null;

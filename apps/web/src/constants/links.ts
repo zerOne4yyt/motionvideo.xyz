@@ -1,5 +1,5 @@
 export const GITHUB = {
-  org: "motionvideohq",
+  org: "zerOne4yyt",
   repo: "motionvideo.xyz",
 } as const;
 
@@ -15,7 +15,7 @@ export const LINK = {
   EMAIL: "hello@motionvideo.xyz",
   GITHUB: `https://github.com/${GITHUB.org}`,
   GITHUB_REPO: `https://github.com/${GITHUB.org}/${GITHUB.repo}`,
-  MCP_REPO: `https://github.com/${GITHUB.org}/motionvideo-mcp`,
+  MCP_REPO: "https://github.com/motionvideohq/motionvideo-mcp",
   SHADCN_LABS: "https://www.shadcn-labs.com",
   X: xProfileUrl(X_HANDLE),
   // Opens a DM to the founder's personal account (X needs the numeric user

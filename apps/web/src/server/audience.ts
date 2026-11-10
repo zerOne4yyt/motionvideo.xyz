@@ -1,6 +1,7 @@
 import { env } from "cloudflare:workers";
 import { z } from "zod";
 
+import { PERSONAL_FORK } from "@/constants/personal-fork";
 import { SITE } from "@/constants/site";
 
 // Site traffic for the /sponsor page, read from PostHog's query API with a
@@ -77,6 +78,9 @@ const SOURCES = new Map([
 const NOT_SOURCES = new Set(["$direct", SITE.DOMAIN, "accounts.google.com"]);
 
 const query = async (hogql: string) => {
+  if (PERSONAL_FORK) {
+    throw new Error("Analytics are disabled in this personal fork.");
+  }
   const response = await fetch(POSTHOG_API, {
     method: "POST",
     headers: {

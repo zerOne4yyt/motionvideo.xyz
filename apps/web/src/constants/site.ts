@@ -31,7 +31,7 @@ export const SITE = {
     OPERATOR: NAME,
     UPDATED_AT: "2026-10-22",
   },
-  NAME: "MotionVideo",
+  NAME: "MotionLibrary",
   TAGLINE: "Motion design, written in code.",
   URL: SITE_ORIGIN,
 } as const;

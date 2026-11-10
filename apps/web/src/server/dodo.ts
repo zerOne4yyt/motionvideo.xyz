@@ -9,6 +9,7 @@ import type { CountryCode } from "dodopayments/resources/misc";
 import { JOB_PLANS } from "@/constants/jobs";
 import type { JobPlan } from "@/constants/jobs";
 import { DEFAULT_LOCALE, isLocale, localizedPath } from "@/constants/locales";
+import { PERSONAL_FORK } from "@/constants/personal-fork";
 import { PLAN_PRICE_CENTS } from "@/constants/plans";
 import type { Plan, PlanBilling } from "@/constants/plans";
 import { ROUTES } from "@/constants/routes";
@@ -20,6 +21,9 @@ let client: DodoPayments | undefined;
 // Public pages can be prerendered without payment secrets. Initialize only
 // when a payment operation needs the client, retaining SDK credential checks.
 export const getDodo = (): DodoPayments => {
+  if (PERSONAL_FORK) {
+    throw new Error("Payments are disabled in this personal fork.");
+  }
   client ??= new DodoPayments({
     bearerToken: env.DODO_PAYMENTS_API_KEY,
     // Anything but an explicit live_mode stays in test mode.

@@ -1,26 +1,4 @@
-import { ASSETS } from "@/constants/links";
 import { SITE } from "@/constants/site";
-import { absoluteUrl } from "@/constants/url";
-
-// Static 1200×630 share image (public/og.jpg): the logomark and name over a
-// collage of catalog posters, used for every page.
-const OG_IMAGE = {
-  alt: `${SITE.NAME}: ${SITE.TAGLINE}`,
-  height: "630",
-  url: absoluteUrl("/og.jpg"),
-  width: "1200",
-} as const;
-
-// Its moving twin (ASSETS.VIDEO_OG on R2, rendered by `pnpm og:render` in
-// apps/videos): the same centre with the posters revolving around it, a
-// 12-second silent loop. Platforms that play og:video (Facebook, LinkedIn,
-// Discord, Slack, iMessage…) show it; the rest keep the image.
-const OG_VIDEO = {
-  height: "630",
-  type: "video/mp4",
-  url: ASSETS.VIDEO_OG,
-  width: "1200",
-} as const;
 
 interface CreateMetadataOptions {
   /** Page title; the site name is appended. Omit on the home page. */
@@ -56,37 +34,12 @@ export const createMetadata = ({
 
 // Site-wide head tags, set once on the root route.
 export const baseMetadata = {
-  links: [
-    { href: "/favicon.ico", rel: "icon", sizes: "48x48" },
-    { href: "/favicon.svg", rel: "icon", type: "image/svg+xml" },
-    {
-      href: "/apple-touch-icon.png",
-      rel: "apple-touch-icon",
-      sizes: "180x180",
-    },
-    { href: "/manifest.json", rel: "manifest" },
-  ],
+  links: [{ href: "/favicon.svg", rel: "icon", type: "image/svg+xml" }],
   meta: [
     { charSet: "utf-8" },
     { content: "width=device-width, initial-scale=1", name: "viewport" },
     { content: "light dark", name: "color-scheme" },
     { content: SITE.NAME, name: "application-name" },
-    { content: SITE.AUTHOR.NAME, name: "author" },
-    { content: SITE.KEYWORDS.join(", "), name: "keywords" },
-    { content: SITE.NAME, property: "og:site_name" },
-    { content: "website", property: "og:type" },
-    { content: OG_IMAGE.url, property: "og:image" },
-    { content: OG_IMAGE.alt, property: "og:image:alt" },
-    { content: OG_IMAGE.width, property: "og:image:width" },
-    { content: OG_IMAGE.height, property: "og:image:height" },
-    { content: OG_VIDEO.url, property: "og:video" },
-    { content: OG_VIDEO.url, property: "og:video:secure_url" },
-    { content: OG_VIDEO.type, property: "og:video:type" },
-    { content: OG_VIDEO.width, property: "og:video:width" },
-    { content: OG_VIDEO.height, property: "og:video:height" },
-    { content: "summary_large_image", name: "twitter:card" },
-    { content: SITE.AUTHOR.TWITTER, name: "twitter:creator" },
-    { content: OG_IMAGE.url, name: "twitter:image" },
-    { content: OG_IMAGE.alt, name: "twitter:image:alt" },
+    { content: "noindex, nofollow", name: "robots" },
   ],
 };

@@ -3,6 +3,7 @@ import { useIntlayer } from "react-intlayer";
 
 import { ExternalLinkChip } from "@/components/external-link-chip";
 import { SponsorDetailRow } from "@/components/sponsor-detail-row";
+import { PERSONAL_FORK } from "@/constants/personal-fork";
 import { FOUNDING_SPONSORS } from "@/constants/sponsors";
 import { useSponsors } from "@/lib/sponsorships";
 import { cn } from "@/lib/utils";
@@ -75,7 +76,7 @@ export const SponsoredCard = ({
     return () => window.clearInterval(id);
   }, [sponsors.length]);
 
-  if (!sponsor) {
+  if (PERSONAL_FORK || !sponsor) {
     return null;
   }
 

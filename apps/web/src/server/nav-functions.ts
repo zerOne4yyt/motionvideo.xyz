@@ -3,6 +3,7 @@ import { env } from "cloudflare:workers";
 import { and, count, desc, eq, gt, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/d1";
 
+import { PERSONAL_FORK } from "@/constants/personal-fork";
 import catalog from "@/data/motion-catalog.json";
 import { BLOG_POSTS } from "@/lib/blog";
 import { CHANGELOG_ENTRIES } from "@/lib/changelog";
@@ -120,6 +121,9 @@ const STATIC_PREVIEWS = {
  */
 export const getNavPreviews = createServerFn({ method: "GET" }).handler(
   async (): Promise<NavPreviews> => {
+    if (PERSONAL_FORK) {
+      return { ...STATIC_PREVIEWS, jobs: { count: 0, listings: [] } };
+    }
     const db = drizzle(env.DB);
     const live = and(
       eq(jobPosts.status, "approved"),

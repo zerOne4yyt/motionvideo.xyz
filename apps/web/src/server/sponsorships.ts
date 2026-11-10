@@ -2,6 +2,7 @@ import { env } from "cloudflare:workers";
 import { and, asc, count, eq, gt, inArray, isNull, or } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/d1";
 
+import { PERSONAL_FORK } from "@/constants/personal-fork";
 import { SPONSOR_SLOTS } from "@/constants/sponsors";
 import type { Sponsor, SponsorTier } from "@/constants/sponsors";
 
@@ -134,6 +135,9 @@ export const syncSponsorPayment = async (paymentId: string) => {
 
 /** Approved creatives of running sponsorships: every live placement. */
 export const liveSponsors = async (): Promise<Sponsor[]> => {
+  if (PERSONAL_FORK) {
+    return [];
+  }
   const rows = await drizzle(env.DB)
     .select()
     .from(sponsorships)

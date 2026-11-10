@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
 import { DEFAULT_LOCALE, isLocale } from "@/constants/locales";
+import { PERSONAL_FORK } from "@/constants/personal-fork";
 import { BLOG_POSTS } from "@/lib/blog";
 import { CHANGELOG_ENTRIES } from "@/lib/changelog";
 import type { MoveFamily } from "@/lib/move-families";
@@ -93,6 +94,9 @@ const STATIC_INDEX = {
 export const getSearchIndex = createServerFn({ method: "GET" })
   .validator(z.string())
   .handler(async ({ data: requested }): Promise<SearchIndex> => {
+    if (PERSONAL_FORK) {
+      return { ...STATIC_INDEX, blog: [], changelog: [], docs: [] };
+    }
     const locale = isLocale(requested) ? requested : DEFAULT_LOCALE;
     const source = await getDocsSource();
     const docs = await Promise.all(

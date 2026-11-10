@@ -11,7 +11,8 @@
   --shadow-outline: var(--surface-outline);
   --shadow-popover: var(--surface-outline), var(--surface-lift);
   --font-heading: var(--font-sans);
-  --font-sans: "Timeless Sans", Arial, sans-serif;
+  --font-sans:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono:
     "Paper Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     monospace;

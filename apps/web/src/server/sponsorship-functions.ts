@@ -4,6 +4,7 @@ import { and, count, desc, eq, ne, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/d1";
 import { z } from "zod";
 
+import { PERSONAL_FORK } from "@/constants/personal-fork";
 import { ROUTES } from "@/constants/routes";
 import { SITE } from "@/constants/site";
 import { SPONSOR_ONCE_DAYS } from "@/constants/sponsors";
@@ -32,12 +33,12 @@ const idSchema = z.string().min(1).max(100);
 
 /** Tiers whose seats (SPONSOR_SLOTS each) are all taken. */
 export const getSoldOutTiers = createServerFn({ method: "GET" }).handler(() =>
-  soldOutTiers()
+  PERSONAL_FORK ? Promise.resolve([]) : soldOutTiers()
 );
 
 /** Site traffic shown to prospective sponsors on /sponsor. */
 export const getAudienceStats = createServerFn({ method: "GET" }).handler(() =>
-  audienceStats()
+  PERSONAL_FORK ? Promise.resolve(null) : audienceStats()
 );
 
 const mySponsorshipColumns = {

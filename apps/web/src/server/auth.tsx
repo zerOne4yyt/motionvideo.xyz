@@ -2,6 +2,8 @@ import { getRequest } from "@tanstack/react-start/server";
 import { env } from "cloudflare:workers";
 import { drizzle } from "drizzle-orm/d1";
 
+import { PERSONAL_FORK } from "@/constants/personal-fork";
+
 import { renderEmail } from "../emails/_render";
 import SignInEmail, { signInSubject } from "../emails/sign-in";
 import WelcomeEmail, { welcomeSubject } from "../emails/welcome";
@@ -63,4 +65,6 @@ export const getAuth = (): Auth => {
 
 /** The signed-in session for the current request, or `null`. */
 export const getCurrentSession = () =>
-  getAuth().api.getSession({ headers: getRequest().headers });
+  PERSONAL_FORK
+    ? Promise.resolve(null)
+    : getAuth().api.getSession({ headers: getRequest().headers });

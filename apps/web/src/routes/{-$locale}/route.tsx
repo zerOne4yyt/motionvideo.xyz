@@ -1,4 +1,9 @@
-import { Outlet, createFileRoute, notFound } from "@tanstack/react-router";
+import {
+  Outlet,
+  createFileRoute,
+  notFound,
+  redirect,
+} from "@tanstack/react-router";
 import type { AnyRouteMatch } from "@tanstack/react-router";
 import { getPathWithoutLocale } from "intlayer";
 
@@ -10,6 +15,7 @@ import {
   localizedPath,
   ogLocale,
 } from "@/constants/locales";
+import { isUnavailableForkPath } from "@/constants/personal-fork";
 import { videoPath } from "@/constants/routes";
 import { absoluteUrl } from "@/constants/url";
 import {
@@ -25,7 +31,13 @@ export const Route = createFileRoute("/{-$locale}")({
   // engines could index. (intlayer's `validatePrefix` passes anything that
   // doesn't look like a locale code, which would turn `/nope` into the home
   // page.)
-  beforeLoad: ({ params }) => {
+  beforeLoad: ({ params, location }) => {
+    if (isUnavailableForkPath(getPathWithoutLocale(location.pathname))) {
+      throw redirect({
+        to: "/{-$locale}/fork-info",
+        params: { locale: params.locale },
+      });
+    }
     if (params.locale !== undefined && !isLocale(params.locale)) {
       throw notFound();
     }

@@ -9,6 +9,7 @@ import {
   TooltipTrigger,
   createTooltipHandle,
 } from "@/components/ui/tooltip";
+import { PERSONAL_FORK } from "@/constants/personal-fork";
 import { ROUTES } from "@/constants/routes";
 import { FOUNDING_SPONSORS, SPONSOR_SLOTS } from "@/constants/sponsors";
 import { useSponsors } from "@/lib/sponsorships";
@@ -50,6 +51,9 @@ export const SponsorSlots = ({
   // Always SPONSOR_SLOTS places; more only when more sponsors fill them.
   const open = Math.max(0, SPONSOR_SLOTS - taken.length);
   const tooltip = useMemo(() => createTooltipHandle<ReactNode>(), []);
+  if (PERSONAL_FORK) {
+    return null;
+  }
   return (
     <div className="flex flex-wrap items-center gap-2">
       {/* One shared tooltip slides and morphs between the slots. */}

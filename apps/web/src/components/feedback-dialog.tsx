@@ -20,6 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { PERSONAL_FORK } from "@/constants/personal-fork";
 import { track } from "@/lib/analytics";
 import { useSession } from "@/lib/auth-client";
 import { FEEDBACK_MAX, FEEDBACK_MOODS, feedbackSchema } from "@/lib/feedback";
@@ -248,7 +249,14 @@ export const FeedbackDialogProvider = ({
         onOpenChange={(open) => setState((current) => ({ ...current, open }))}
       >
         <DialogContent>
-          <FeedbackForm key={state.key} page={state.page} />
+          {PERSONAL_FORK ? (
+            <p className="p-4 text-sm">
+              这是个人只读参考站，不收集反馈或邮箱。请通过 GitHub
+              仓库查看源码与许可。
+            </p>
+          ) : (
+            <FeedbackForm key={state.key} page={state.page} />
+          )}
         </DialogContent>
       </ShadDialog>
     </FeedbackDialogContext>

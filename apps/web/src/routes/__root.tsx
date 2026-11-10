@@ -8,20 +8,15 @@ import {
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { getHTMLTextDir } from "intlayer";
 
-import { ClickTracking } from "@/components/click-tracking";
 import { FeedbackDialogProvider } from "@/components/feedback-dialog";
-import { FollowPrompt } from "@/components/follow-prompt";
 import { KeyboardShortcutsProvider } from "@/components/keyboard-shortcuts";
-import { LivePresenceProvider } from "@/components/live-presence";
 import { LocaleProvider } from "@/components/locale-provider";
 import { NotFound } from "@/components/not-found";
-import { OfferBanner, offerScript } from "@/components/offer-banner";
 import { PageBottomBlur } from "@/components/progressive-blur";
 import { SignInDialogProvider } from "@/components/sign-in-dialog";
 import { SoundEffects } from "@/components/ui/sound";
 import { localeFromPath } from "@/constants/locales";
 import { themeScript } from "@/lib/theme";
-import { organizationJsonLd } from "@/seo/json-ld";
 import { baseMetadata } from "@/seo/metadata";
 
 import fontsCss from "../styles/fonts.css?url";
@@ -43,20 +38,27 @@ const RootDocument = ({ children }: { children: React.ReactNode }) => {
       </head>
       <body className="flex min-h-svh flex-col antialiased">
         <LocaleProvider locale={locale}>
-          <OfferBanner />
+          <aside className="bg-muted border-b px-4 py-2 text-center text-xs">
+            个人只读参考站 · 非 MotionVideo 官方服务 · 案例媒体来自原站
+            CDN。登录、支付与 Pro 技能未启用。{" "}
+            <a
+              className="underline"
+              href="https://github.com/zerOne4yyt/motionvideo.xyz"
+              target="_blank"
+              rel="noreferrer"
+            >
+              源码 / MIT 署名
+            </a>
+          </aside>
           <SignInDialogProvider>
             <FeedbackDialogProvider>
               <KeyboardShortcutsProvider>
-                <LivePresenceProvider>
-                  <SoundEffects>{children}</SoundEffects>
-                </LivePresenceProvider>
+                <SoundEffects>{children}</SoundEffects>
               </KeyboardShortcutsProvider>
             </FeedbackDialogProvider>
           </SignInDialogProvider>
-          <FollowPrompt />
         </LocaleProvider>
         <PageBottomBlur />
-        <ClickTracking />
         <TanStackDevtools
           config={{
             position: "bottom-right",
@@ -80,23 +82,10 @@ export const Route = createRootRoute({
       { href: appCss, rel: "stylesheet" },
       // Own stylesheet so HMR on app CSS never re-resolves the font.
       { href: fontsCss, rel: "stylesheet" },
-      // Preload the same-origin website font served from `/fonts`.
-      {
-        as: "font",
-        crossOrigin: "anonymous",
-        fetchPriority: "high",
-        href: "/fonts/timeless/TimelessSansVF-1.094.woff2",
-        rel: "preload",
-        type: "font/woff2",
-      },
       ...baseMetadata.links,
     ],
     meta: baseMetadata.meta,
-    scripts: [
-      { children: themeScript },
-      { children: offerScript },
-      organizationJsonLd(),
-    ],
+    scripts: [{ children: themeScript }],
   }),
   notFoundComponent: NotFound,
   shellComponent: RootDocument,

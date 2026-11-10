@@ -11,8 +11,6 @@ import {
 import type { ReactNode } from "react";
 import { useIntlayer, useLocale } from "react-intlayer";
 
-import { LoginForm } from "@/components/login-form";
-import { SignInFan } from "@/components/sign-in-fan";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { ensureLocalizedPath } from "@/constants/locales";
 import { ACCOUNT_PAGES } from "@/constants/routes";
@@ -160,13 +158,20 @@ export const SignInDialogProvider = ({ children }: { children: ReactNode }) => {
         >
           {/* Signing in closes the dialog (and goes to `next`) via the
               session change above. */}
-          <LoginForm
-            key={state.key}
-            layout="dialog"
-            description={state.reason}
-            returnTo={state.next && ensureLocalizedPath(state.next, locale)}
-          />
-          <SignInFan />
+          <div className="space-y-4 p-6">
+            <h2 className="font-semibold">个人只读参考站</h2>
+            <p className="text-muted-foreground text-sm">
+              这里保留公开案例、搜索与提示词浏览，不提供账号、云端收藏、付款或付费技能。案例作者与原站保留各自权利。
+            </p>
+            <a
+              className="underline"
+              href="https://motionvideo.xyz"
+              target="_blank"
+              rel="noreferrer"
+            >
+              访问 MotionVideo 官方网站
+            </a>
+          </div>
         </DialogContent>
       </Dialog>
     </SignInDialogContext>
