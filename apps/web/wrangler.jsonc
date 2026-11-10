@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "motion-library-zerone",
+  "name": "motion-library-tyler",
   "compatibility_date": "2026-09-27",
   "compatibility_flags": ["nodejs_compat"],
   "main": "src/personal-server.ts",
@@ -14,7 +14,7 @@
     "enabled": false,
   },
   "vars": {
-    "BETTER_AUTH_URL": "https://motionvideo.xyz",
+    "BETTER_AUTH_URL": "https://motion-library-tyler.yytsky1.workers.dev",
     "EMAIL_FROM": "",
     "ADMIN_EMAILS": "",
     "DODO_PAYMENTS_ENVIRONMENT": "test_mode",

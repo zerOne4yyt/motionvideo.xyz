@@ -2,6 +2,10 @@
 
 This is a source-preserving fork of [motionvideohq/motionvideo.xyz](https://github.com/motionvideohq/motionvideo.xyz), based on commit `71d7897`. Website code copyright (c) 2026 Aniket Pawar, under the [MIT license](LICENSE).
 
+Public deployment: https://motion-library-tyler.yytsky1.workers.dev/zh
+
+Repository: https://github.com/zerOne4yyt/motionvideo.xyz
+
 ## What runs
 
 The original React/TanStack browsing experience, public video catalogue, category/model/color filters, search, localized public prompts, tools and resource directories remain available. This is a public **read-only personal reference fork**, not the official MotionVideo service.

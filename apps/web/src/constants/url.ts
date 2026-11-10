@@ -1,4 +1,5 @@
-export const SITE_ORIGIN = "https://motionvideo.xyz" as const;
+export const SITE_ORIGIN =
+  "https://motion-library-tyler.yytsky1.workers.dev" as const;
 
 // Absolute URL for canonical links, Open Graph, and JSON-LD. Always the
 // production origin so shared links and structured data never point at dev.
