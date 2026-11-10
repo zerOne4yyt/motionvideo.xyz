@@ -146,6 +146,7 @@ const KIND_BY_TOOL_CATEGORY = {
   Skills: "skill",
   Articles: "extra",
   Resources: "extra",
+  "Light effects": "extra",
 } as const satisfies Record<string, DirectoryKind>;
 
 const toolsOfKind = (kind: DirectoryKind) =>
@@ -368,7 +369,11 @@ const SLUG_BY_CATEGORY = {
     "Product films": "product-films",
     "AI video": "ai-video",
   },
-  extra: { Articles: "articles", Resources: "resources" },
+  extra: {
+    Articles: "articles",
+    Resources: "resources",
+    "Light effects": "light-effects",
+  },
 } as const satisfies Record<DirectoryKind, Record<string, string>>;
 
 type SlugMap = typeof SLUG_BY_CATEGORY;

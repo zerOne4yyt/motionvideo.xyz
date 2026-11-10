@@ -273,6 +273,17 @@ export default {
         }),
       },
       extra: {
+        "light-effects": t({
+          en: "Light effects",
+          es: "Efectos de luz",
+          fr: "Effets lumineux",
+          zh: "光效",
+          ko: "빛 효과",
+          ja: "光のエフェクト",
+          de: "Lichteffekte",
+          pt: "Efeitos de luz",
+          ru: "Световые эффекты",
+        }),
         articles: t({
           en: "Articles",
           es: "Artículos",
@@ -405,6 +416,17 @@ export default {
         }),
       },
       extra: {
+        "light-effects": t({
+          en: "Light effects",
+          es: "Efectos de luz",
+          fr: "Effets lumineux",
+          zh: "光效",
+          ko: "빛 효과",
+          ja: "光のエフェクト",
+          de: "Lichteffekte",
+          pt: "Efeitos de luz",
+          ru: "Световые эффекты",
+        }),
         articles: t({
           en: "Articles.",
           es: "Artículos.",
@@ -536,6 +558,17 @@ export default {
         }),
       },
       extra: {
+        "light-effects": t({
+          en: "Confirmed light-effect references with live previews, authors, source links and licensing notes.",
+          es: "Confirmed light-effect references with live previews, authors, source links and licensing notes.",
+          fr: "Confirmed light-effect references with live previews, authors, source links and licensing notes.",
+          zh: "已确认采用的光效参考，附动态预览、作者、源码入口和许可说明。",
+          ko: "Confirmed light-effect references with live previews, authors, source links and licensing notes.",
+          ja: "Confirmed light-effect references with live previews, authors, source links and licensing notes.",
+          de: "Confirmed light-effect references with live previews, authors, source links and licensing notes.",
+          pt: "Confirmed light-effect references with live previews, authors, source links and licensing notes.",
+          ru: "Confirmed light-effect references with live previews, authors, source links and licensing notes.",
+        }),
         articles: t({
           en: "Articles and X/Twitter posts on making motion videos with Claude and other coding agents: workflows, prompts, breakdowns.",
           es: "Artículos y posts de X/Twitter sobre hacer vídeos de motion con Claude y otros agentes de código: flujos, prompts y análisis.",

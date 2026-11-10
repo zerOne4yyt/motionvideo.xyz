@@ -3735,6 +3735,16 @@
         "updatedAt": "2026-07-30T05:46:34Z",
         "addedAt": "2026-10-25",
         "renderers": ["remotion", "hyperframes"]
+      },
+      {
+        "id": "react-bits-orb-confirmed",
+        "name": "Orb · 流动光环",
+        "description": "已确认采用的光效参考。作者 David Haz；官方动态预览、源码与 MIT + Commons Clause 许可说明。",
+        "category": "Light effects",
+        "url": "/light-effects/",
+        "cover": null,
+        "addedAt": "2026-11-11",
+        "resourceType": "examples"
       }
     ]
   },
